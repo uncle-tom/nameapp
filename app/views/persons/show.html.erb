@@ -1,0 +1,38 @@
+<h1>Привет, <%= @user.first_name %></h1>
+Рейтинг  : <%= rating_for @user, 'rating',  star: 5, enable_half: true, half_show: true, cancel_hint: 'Cancel this rating!', imdb_avg: true, targetType: "score", dimension: true %>
+<p><%= rating_for @user, 'rating', avg: true %></p>
+<h4>Это ваш профиль</h4>
+<%= image_tag @user.avatar.url(:thumb) if @user.avatar? %>
+<p>Почта: <%= @user.email %></p>
+<p>Телефон: <%= @user.phone_number %></p>
+<p>Город: <%= @user.city %></p>
+<p>Сайт: <%= @user.website %></p>
+
+<h4>Ваши записи:</h4>
+<div>
+  <% if @user.articles.blank? %>
+    <p>Пока записей нет</p>
+  <% else %>
+    <% @user.articles.each do |article| %>
+      <p> 
+        <%= link_to article.name, article_path(article.id) %> 
+      </p>
+    <% end %>
+  <% end %>
+</div>
+ 
+
+<h4>Ваши альбомы:</h4>
+<div>
+  <% @user.albums.each do |album| %>
+  <p>
+    <%= link_to album.name, album_path(album.id) %> 
+  </p>
+  <% end %>
+</div>
+
+<% if current_user.id == @user.id %>
+  <%= link_to 'Изменить', edit_user_registration_path,  class: 'btn btn-primary' %>
+<% end %>
+
+

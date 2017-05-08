@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  Сейчас на сайте <span id="howmuchpos"></span> жориков.
+</div>
+
+<div class="container">
+  <h2>Все юзеры</h2>
+  <% User.all.order('created_at DESC').each do |user| %>
+  <p><%= link_to user.first_name, person_path(user.id) %></p>
+  <%= rating_for user, 'rating' %>
+
+  <% end %>
+</div>
+
+<div class="container">
+  <h1>Listing Articles</h1>  
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.order('created_at DESC').each do |article| %>
+      <tr>
+        <td><%= link_to article.name, article %></td>
+        <td><%= time_ago_in_words article.created_at %></td>
+        <td><%= link_to 'Show', article %></td>
+        <td><%= link_to 'Edit', edit_article_path(article) %></td>
+        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <tr>
+        <td><%= article.text %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Article', new_article_path %>
