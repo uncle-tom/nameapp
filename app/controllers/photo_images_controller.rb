@@ -5,6 +5,8 @@ class PhotoImagesController < ApplicationController
   # GET /photo_images.json
   def index
     @photo_images = PhotoImage.all
+    @album = Album.find(params[:album_id])
+    Rails.logger.warn @album.inspect
   end
 
   # GET /photo_images/1
@@ -15,17 +17,20 @@ class PhotoImagesController < ApplicationController
   # GET /photo_images/new
   def new
     @photo_image = PhotoImage.new
+    @album = Album.find(params[:album_id])
+    Rails.logger.warn @album.inspect
   end
 
   # GET /photo_images/1/edit
   def edit
+    @album = Album.find(params[:album_id])
   end
 
   # POST /photo_images
   # POST /photo_images.json
   def create
     @photo_image = PhotoImage.new(photo_image_params)
-    @album = current_user.albums.find(params[:photo_image][:album_id])
+    @album = Album.find(params[:album_id])
     @photo_image.user = current_user
     @photo_image.album_id = @album.id if @album
     respond_to do |format|

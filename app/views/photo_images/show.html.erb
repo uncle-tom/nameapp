@@ -1,4 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<% @photo_image.image.each do |f| %>
+<%= image_tag f.url(:large) %>
+<% end %>
 <%= link_to 'Edit', edit_photo_image_path(@photo_image) %> |
 <%= link_to 'Back', photo_images_path %>

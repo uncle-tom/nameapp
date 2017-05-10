@@ -12,8 +12,8 @@
   <tbody>
     <% @albums.each do |album| %>
       <tr>
-        <td><%= link_to album.name, album %></td>
-        <td><%= link_to 'Edit', edit_album_path(album) %></td>
+        <td><%= link_to album.name, user_album_path(@user, album.user_id) %></td>
+        <td><%= link_to 'Edit', albums_path(@albums) %></td>
         <td><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

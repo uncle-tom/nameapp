@@ -26,9 +26,10 @@
 <div>
   <% @user.albums.each do |album| %>
   <p>
-    <%= link_to album.name, album_path(album.id) %> 
+    <%= link_to album.name, user_album_path(@user, album.id) %> 
   </p>
   <% end %>
+  <p><%= link_to 'Создать новый альбом', new_album_path %></p>
 </div>
 
 <% if user_signed_in? %>

@@ -11,7 +11,8 @@
 
   <tbody>
     <% @photo_images.each do |photo_image| %>
-      <tr>
+      <p><%= photo_image.name %></p>
+      <tr>        
         <td><%= link_to 'Show', photo_image %></td>
         <td><%= link_to 'Edit', edit_photo_image_path(photo_image) %></td>
         <td><%= link_to 'Destroy', photo_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -22,4 +23,4 @@
 
 <br>
 
-<%= link_to 'New Photo image', new_photo_image_path %>
+<%= link_to 'New Photo image', new_user_album_photo_image_path(current_user, @album) %>

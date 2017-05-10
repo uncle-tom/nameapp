@@ -21,7 +21,7 @@
 <div class="container">
   <h2>Все юзеры</h2>
   <% User.all.order('created_at DESC').each do |user| %>
-  <p><%= link_to user.first_name, person_path(user.id) %></p>
+  <p><%= link_to user.first_name, user_path(user.id) %></p>
   <%= rating_for user, 'rating' %>
 
   <% end %>
