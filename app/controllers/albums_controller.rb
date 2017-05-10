@@ -7,25 +7,11 @@ class AlbumsController < ApplicationController
     @albums = Album.all
   end
 
-  # GET /albums/1
-  # GET /albums/1.json
-  def show
-  end
-
-  # GET /albums/new
-  def new
-    @album = Album.new
-  end
-
-  # GET /albums/1/edit
-  def edit
-  end
-
   # POST /albums
   # POST /albums.json
   def create
-    @album = Album.new(album_params)
-    @album.user_id = current_user.id if current_user
+    @albums = Album.new(album_params)
+    @albums.user_id = current_user.id if current_user
     respond_to do |format|
       if @album.save
         format.html { redirect_to @album, notice: 'Album was successfully created.' }
@@ -35,6 +21,25 @@ class AlbumsController < ApplicationController
         format.json { render json: @album.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # GET /albums/1
+  # GET /albums/1.json
+  def show
+    @user = User.find(params[:user_id])
+    album = @user.photo_albums.find(params[:id])
+    @image = PhotoImage.new user: current_user, photo_album: album
+    @images = album.photo_images.where('id IS NOT NULL')
+    show!
+  end
+
+  # GET /albums/new
+  def new
+    @album = Album.new
+  end
+
+  # GET /albums/1/edit
+  def edit
   end
 
   # PATCH/PUT /albums/1
@@ -69,6 +74,6 @@ class AlbumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-      params.require(:album).permit(:name, photo: [])
+      params.require(:album).permit(:name)
     end
 end

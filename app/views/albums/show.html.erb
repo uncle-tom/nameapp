@@ -2,12 +2,14 @@
 
 <%= @album.name %>
 
-<% @album.photo.each do |p| %>
-  <%= image_tag p.photo_url(:thumb).to_s %>
-<% end %>
+
 
 <p>
-<%= image_tag @album.photo_url(:thumb).to_s %>
+
+
+ <%= @album.photo_images.name %>
+
+
 </p>
 
 <%= link_to 'Edit', edit_album_path(@album) %> |

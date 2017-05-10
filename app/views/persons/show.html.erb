@@ -5,7 +5,7 @@
 <%= image_tag @user.avatar.url(:thumb) if @user.avatar? %>
 <p>Почта: <%= @user.email %></p>
 <p>Телефон: <%= @user.phone_number %></p>
-<p>Город: <%= @user.city %></p>
+<p>Город: <%= @user.city.try(:name) %></p>
 <p>Сайт: <%= @user.website %></p>
 
 <h4>Ваши записи:</h4>
@@ -31,8 +31,11 @@
   <% end %>
 </div>
 
-<% if current_user.id == @user.id %>
-  <%= link_to 'Изменить', edit_user_registration_path,  class: 'btn btn-primary' %>
+<% if user_signed_in? %>
+  <% if current_user.id == @user.id %>
+    <%= link_to 'Изменить', edit_user_registration_path,  class: 'btn my-btn-red' %>
+  <% end %>
 <% end %>
+
 
 

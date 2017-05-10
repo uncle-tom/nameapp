@@ -18,7 +18,21 @@
 @import "bootstrap";
 
 $main_color: #fff;
+$blue_color: #70A9D4;
+$red_color: #FF5A5F;
 
 body {
 	background-color: $main_color;
+}
+
+.my-btn-primary, .my-btn-red {
+  color: #fff !important;
+  background-color: $blue_color;
+  border-color: #666;
+  border-radius: 1px;
+  padding: 12px 24px;
+}
+
+.my-btn-red {
+	background-color: $red_color;
 }

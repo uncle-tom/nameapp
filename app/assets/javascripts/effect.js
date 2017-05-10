@@ -8,17 +8,17 @@ $( document ).on('turbolinks:load', function(){
   function suffix(num) {
     const n = (num - LOW_LIMIT) % 10;
     if(n === 1) {
-      return 'посетитель';
+      return 'жорик';
     } else if (n >= 2 && n < 5) {
-      return 'посетителя';
+      return 'жорика';
     } else {
-      return 'посетителей';
+      return 'жориков';
     }
   }
 
   if(currenthour >= 11 && currenthour < 24) {
     pos = random + LOW_LIMIT;
-    howMuchPos = 'Зараз на сайті ', pos, ' ', suffix(pos);
+    howMuchPos = pos + ' ' + suffix(pos);
     opa = $('#howmuchpos');
     var my = "Text";
     opa.html(howMuchPos);

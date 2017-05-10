@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508143207) do
+ActiveRecord::Schema.define(version: 20170510094720) do
 
   create_table "albums", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -40,12 +40,28 @@ ActiveRecord::Schema.define(version: 20170508143207) do
     t.datetime "updated_at"
   end
 
+  create_table "cities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "overall_averages", force: :cascade do |t|
     t.integer  "rateable_id"
     t.string   "rateable_type"
     t.float    "overall_avg",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "photo_images", force: :cascade do |t|
+    t.integer  "album_id"
+    t.string   "name"
+    t.string   "description"
+    t.integer  "user_id"
+    t.string   "image"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "rates", force: :cascade do |t|
@@ -89,9 +105,9 @@ ActiveRecord::Schema.define(version: 20170508143207) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "phone_number"
-    t.string   "city"
     t.string   "website"
     t.string   "avatar"
+    t.integer  "city_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

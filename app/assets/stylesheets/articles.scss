@@ -1,3 +1,20 @@
 // Place all the styles related to the articles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$main_color: #fff;
+$blue_color: #70A9D4;
+$red_color: #FF5A5F;
+
+#howmuchpos {
+	color: $red_color;
+	font-weight: 700;
+}
+
+#articles .welcome {
+	color: #484848;
+	margin-top: 64px;
+	text-transform: uppercase;
+	font-size: 48px;
+	line-height: 56px;
+}
